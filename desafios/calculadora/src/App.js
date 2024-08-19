@@ -56,6 +56,32 @@ const App = () => {
     }
   };
 
+
+  const handleDividNumbers = () => {
+    if (firstNumber === "0") {
+      setFirstNumber(String(currentNumber));
+      setCurrentNumber("0");
+      setOperation("÷");
+    } else {
+      const divid = Number(firstNumber) / Number(currentNumber);
+      setCurrentNumber(String(divid));
+      setOperation("");
+    }
+  };
+
+
+  const handlePorcentNumbers = () => {
+    if (firstNumber === "0") {
+      setFirstNumber(String(currentNumber));
+      setCurrentNumber("0");
+      setOperation("%");
+    } else {
+      const porcent = Number(firstNumber) % Number(currentNumber);
+      setCurrentNumber(String(porcent));
+      setOperation("");
+    }
+  };
+
   const handleEquals = () => {
     if (firstNumber !== "0" && operation !== "" && currentNumber !== "0") {
       switch (operation) {
@@ -67,6 +93,12 @@ const App = () => {
           break;
         case "x":
           handleMultNumbers();
+          break;
+        case "÷":
+          handleDividNumbers();
+          break;
+        case "%":
+          handlePorcentNumbers();
           break;
         default:
           break;
@@ -81,8 +113,8 @@ const App = () => {
         <Row>
           <Button label="C" onClick={handleOnClear} />
           <Button label="()" onClick={() => handleAddNumber("()")} />
-          <Button label="%" onClick={() => handleAddNumber("%")} />
-          <Button label="÷" onClick={() => handleAddNumber("÷")} />
+          <Button label="%" onClick={handlePorcentNumbers} />
+          <Button label="÷" onClick={handleDividNumbers} />
         </Row>
         <Row>
           <Button label="7" onClick={() => handleAddNumber("7")} />
